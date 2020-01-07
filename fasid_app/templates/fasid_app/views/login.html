@@ -1,0 +1,63 @@
+<html>
+  <body>
+    {% if user.is_authenticated %}
+      <p>Current user: {{ user.email }}</p>
+	  
+      <form action="{% url 'oidc_logout' %}" method="post">
+		{% csrf_token %}
+        <input type="submit" value="logout">
+      </form>
+    {% else %}
+      <a href="{% url 'oidc_authentication_init' %}">Login</a>
+    {% endif %}
+  </body>
+</html>
+
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>My Dashboard</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-md navbar-expand-sm navbar-dark fixed-top bg-primary">
+            <div class="">
+                <a href="/" class="navbar-brand">
+                    <h4>My Dashboard</h4>
+                </a>
+            </div>
+			{% if user.is_authenticated %}
+            <div class="offset-md-8 offset-lg-8">
+				<form action="{% url 'oidc_logout' %}" method="post">
+					{% csrf_token %}
+					<button type="submit" class="btn btn-danger">LogOut</button>
+				</form>
+            </div>
+			{% endif %}
+        </nav>
+        <div class="row justify-content-center" style="margin-top: 90px !important;">
+			{% if user.is_authenticated %}
+			 <h1 class="text-danger"> Sorry! Nothing more to see else your email!</h1><br/>
+            <div class="card bg-success col-8">
+				<h3><p class='text-center text-primary'>{{ user.email }}</p></h3>
+			{% else %}
+            <h1 class="text-danger"> Login first, to see a very important secret</h1><br/>
+			<p><a class='text-center' href="{% url 'oidc_authentication_init' %}"><button class="btn btn-primary">LogIn</button></a></p>
+			{% endif %}
+        </div>
+    </div>
+</body>
+
+</html>
