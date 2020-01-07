@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'fasid_app',
-    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -121,6 +120,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# mozilla_django_oidc Configurations
 AUTHENTICATION_BACKENDS = (
     'mozilla_django_oidc.auth.OIDCAuthenticationBackend',
 )
@@ -128,8 +129,8 @@ OIDC_RP_SIGN_ALGO="RS256"
 OIDC_OP_AUTHORIZATION_ENDPOINT = "https://iddev.fedorainfracloud.org/openidc/Authorization"
 OIDC_OP_TOKEN_ENDPOINT = "https://iddev.fedorainfracloud.org/openidc/Token"
 OIDC_OP_USER_ENDPOINT = "https://iddev.fedorainfracloud.org/openidc/UserInfo"
-OIDC_RP_CLIENT_ID = 'D-dfde1fe4-bfc8-4d3e-875c-a5aa2b7b4b06'
-OIDC_RP_CLIENT_SECRET = "tmt8aZhfvxIB3Ct4eLWy02Dw5ROMyteV"
+OIDC_RP_CLIENT_ID = 'Also Secret'
+OIDC_RP_CLIENT_SECRET = "Secret like name"
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
